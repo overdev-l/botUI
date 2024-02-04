@@ -8,21 +8,67 @@
     <link rel="stylesheet" href="https://unpkg.com/botui@0.3.9/build/botui-theme-default.css" />
     <style>
       html, body {
-        background-color: #41c0cc;
-        background-image: linear-gradient(-90deg, #41c0cc, #41cca5);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .botui-app-container {
+        margin: 0 !important;
+        background-color: rgb(246, 246, 246);
       }
       .botui-container {
         background-color: inherit;
       }
+      .container {
+        width: 60%;
+        height: 500px;
+        display: flex;
+        margin: auto;
+        gap: 20px;
+      }
+      li {
+        margin-top: 40px;
+        font-size: 30px;
+        font-style: bold;
+      }
+      h1 {
+        /*禁止换行*/
+        white-space: nowrap;
+        font-size: 30px;
+      }
+      .buttontext {
+        margin: auto;
+        background-color: transparent ;
+      }
+      .buttontext::before {
+        content: "由 服务助手 转交给 舒曼";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+      }
+      .botui-message {
+        position: relative;
+      }
 
       .botui-messages-container {
       }
-
+      .botui-container {
+        position: relative;
+      }
+      .botui-actions-text {
+        position: absolute;
+        bottom: 20px;
+      }
       .botui-actions-container {
         padding: 0px 30px;
       }
 
       .botui-message {
+      }
+      .botui-message-content text {
+        color: #404040q;
       }
 
       .botui-message-content.text {
@@ -53,8 +99,21 @@
     </style>
   </head>
   <body>
-    <div class="botui-app-container" id="help-bot">
-      <bot-ui></bot-ui>
+    <div class="container">
+      <div>
+        <h1>Customer Service Live Chat</h1>
+        <div class="botui-app-container" id="help-bot">
+          <bot-ui></bot-ui>
+        </div>
+      </div>
+      <div>
+        <h2>Reminder</h2>
+      <ul>
+        <li>Two weeks age, you ordered a pair of jean, a sweater, and a basebal cap.</li>
+        <li>The jeans and the sweater were delivered three days ago, but the baseball cap is missing</li>
+        <li>Yout order number is 712</li>
+      </ul>
+      </div>
     </div>
     <!-- use Vue version 2.0.5 for HTML embeds | https://github.com/botui/botui/issues/103-->
      <!-- remove .min from the file name to use in development mode -->
