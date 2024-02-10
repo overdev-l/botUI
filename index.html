@@ -68,7 +68,7 @@
       .botui-message {
       }
       .botui-message-content text {
-        color: #404040q;
+        color: #404040;
       }
 
       .botui-message-content.text {
@@ -79,6 +79,56 @@
       .botui-message-content.human {
         background-color: #f7ff61;
         color: #404040;
+      }
+      .text {
+        position: relative;
+        margin-left: 20px;
+        background-color: rgb(152, 202 , 248) !important;
+        color: black;
+      }
+      .html {
+        position: relative;
+        margin-left: 20px;
+        background-color: rgb(152, 202 , 248) !important;
+        color: black;
+      }
+      .human {
+        background-color: rgb(107, 107, 107) !important;
+        color: white !important;
+        position: relative !important;
+        margin-left: 0px !important;
+      }
+      .human::before {
+        display: none !important;
+
+      }
+      .html::before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        left: -30px;
+        background-image: url(./service_bot.jpg);
+        background-size: 100% 100%;
+        background-color: white;
+        border-radius: 50% 50%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .text::before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        left: -30px;
+        background-image: url(./service_member.jpg);
+        background-size: 100% 100%;
+        background-color: white;
+        border-radius: 50% 50%;
+        top: 50%;
+        transform: translateY(-50%);
       }
 
       .botui-message-content.embed {
