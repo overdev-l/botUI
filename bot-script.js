@@ -19,7 +19,7 @@ function getQueryVariable(variable)
     }
     return(false);
 }
-const url = getQueryVariable("c")
+const url = "https://baidu.com"
 console.log(url)
 function sendData() {
   fetch('/api/save', {
