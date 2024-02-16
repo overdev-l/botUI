@@ -1,55 +1,114 @@
 var botui = new BotUI('help-bot');
+const info = {
+  phone: null,
+  firsen: '',
+  sedsen: '',
+  thisen: '',
+}
+info.phone = window.prompt("在参加实验前请输入您的手机号后四位，以便确认")
+if(!info.phone) {
+  info.phone = "text"
+}
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+const url = getQueryVariable("c")
+console.log(url)
+function sendData() {
+  fetch('http://127.0.0.1:3000/api/save', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(info)
+  })
+}
 
-botui.action.text({
-  action: {
-    placeholder: 'Type your message here'
-  }
-}).then(function () {
-  return botui.message.add({
-    type: 'html',
-    delay: 500,
-    loading: true,
-    content: '您好！欢迎光临i-Fashion旗舰店，有什么可以帮您的吗？'
-  });
+
+botui.message.add({
+  type: 'html',
+  delay: 500,
+  loading: true,
+  content: '您好！欢迎光临，请问你是对这件衣服感兴趣吗（商品号：7125）'
 }).then(function () {
   return botui.action.text({
     action: {
       placeholder: 'Type your message here'
     }
   })
-}).then(function (res) {
-  return botui.message.add({
-    type: 'html',
-    delay: 1000,
-    loading: true,
-    content: "现在为您转接人工客服。"
-  });
-}).then(function (index) {
+}).then(function(context) {
+  info.firsen = context.value
+})
+  .then(function (res) {
+    return botui.message.add({
+      type: 'html',
+      delay: 500,
+      loading: true,
+      content: '关于对这件衣服，您有什么问题？'
+    })
+  }).then(function () {
+    return botui.action.text({
+      action: {
+        placeholder: 'Type your message here'
+      }
+    })
+  }).then(function(context) {
+    info.sedsen = context.value
+  }).then(function (res) {
+    return botui.message.add({
+      type: 'html',
+      delay: 1000,
+      loading: true,
+      content: "现在为您转接人工客服。"
+    });
+  }).then(function (index) {
     botui.message.bot({
       type: 'buttontext',
       content: 'content'
     })
-  return botui.message.add({
-    delay: 5000,
-    loading: true,
-    content: '您好，我是人工客服舒曼，请问有什么可以帮您的？'
-  });
-}).then(function (index) {
-  return botui.message.add({
-    delay: 1000,
-    loading: true,
-    content: '按照身高体重建议您拍M码'
-  });
-}).then(function (index) {
-  return botui.message.add({
-    delay: 1000,
-    loading: true,
-    content: '由于每个人的身材比例有所不同，我们给到您的是参考尺码，您还可参照宝贝下面的实物尺寸,和平常穿衣尺码习惯再进行选择'
-  });
-}).then(function (index) {
-  return botui.message.add({
-    delay: 1000,
-    loading: true,
-    content: '感谢您的光临，有任何疑问可随时呼我哈，我会尽力为您解决的，期待您再次光临'
-  });
-});
+    return botui.message.add({
+      delay: 5000,
+      loading: true,
+      content: '您好，我是人工客服舒曼，请问你的身高体重是？'
+    });
+  }).then(function () {
+    return botui.action.text({
+      action: {
+        placeholder: 'Type your message here'
+      }
+    })
+  }).then(function(context) {
+    info.thisen = context.value
+  }).then(function(context) {
+    console.log(context)
+  })
+  .then(function (index) {
+    return botui.message.add({
+      delay: 1000,
+      loading: true,
+      content: '按照身高体重建议您拍M码'
+    });
+  }).then(function (index) {
+    return botui.message.add({
+      delay: 1000,
+      loading: true,
+      content: '感谢您的光临，有任何疑问可随意联系我'
+    });
+  }).then(() => {
+    console.log(info)
+    setTimeout(() => {
+      const button = document.querySelector(".backButton")
+      button.style.display = "block"
+      button.onclick = () => {
+        window.location.href = url
+      }
+      sendData()
+    }, 500)
+  })

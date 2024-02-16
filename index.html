@@ -146,22 +146,33 @@
       button.botui-actions-buttons-button {
         margin-top: 0px;
       }
+      .backButton {
+        background-color: rgb(152, 202 , 248) !important;
+        color: black;
+        padding: 7px 13px;
+        border-radius: 15px;
+        outline: none;
+        border: none;
+        display: none;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div>
-        <h1>Customer Service Live Chat</h1>
+        <h1>艾菲迅旗舰店 客户服务咨询</h1>
         <div class="botui-app-container" id="help-bot">
           <bot-ui></bot-ui>
         </div>
       </div>
       <div>
-        <h2>Reminder</h2>
+        <h2>提示信息</h2>
       <ul>
-        <li>Two weeks age, you ordered a pair of jean, a sweater, and a basebal cap.</li>
+        <li>1, 您想买一件纯棉T恤,商品号是7125.</li>
         <li>The jeans and the sweater were delivered three days ago, but the baseball cap is missing</li>
-        <li>Yout order number is 712</li>
+        <li>3, 想问下这件T恤的尺码应该拍大还是拍小尺码.</li>
+        <li style="list-style: none;"><button class="backButton">返回原来网页</button></li>
       </ul>
       </div>
     </div>
