@@ -22,7 +22,7 @@ function getQueryVariable(variable)
 const url = getQueryVariable("c")
 console.log(url)
 function sendData() {
-  fetch('http://127.0.0.1:3000/api/save', {
+  fetch('/api/save', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
